@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import project.ramezreda.moviez.R
 import project.ramezreda.moviez.ui.viewmodels.MainViewModel
 
-class MainActivity : AppCompatActivity() {
+class DummyActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider(this).get(MainViewModel::class.java)
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_dummy)
         setSupportActionBar(findViewById(R.id.toolbar))
         findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = title
 
