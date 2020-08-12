@@ -12,8 +12,9 @@ data class Movie(
     @ColumnInfo(name = "title")
     var title: String,
 
+    var genre: List<String>,
+    var cast: List<String>,
+
     var year: Int,
-    var genre: String,
-    var cast: String,
     var rating: Int
 )

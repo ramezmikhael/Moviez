@@ -1,5 +1,4 @@
-{
-    "movies": [
+[
         {
             "title": "(500) Days of Summer",
             "year": 2009,
@@ -37586,4 +37585,3 @@
             "rating": 2
         }
     ]
-}

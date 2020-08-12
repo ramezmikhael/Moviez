@@ -8,6 +8,7 @@ object JsonConverter {
 
     fun ConvertFromJson(json: String) : List<Movie> {
         val gson = Gson()
+
         val moviesListType = object : TypeToken<List<Movie>>() {}.type
 
         return gson.fromJson(json, moviesListType)
