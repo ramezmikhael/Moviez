@@ -11,6 +11,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mancj.materialsearchbar.MaterialSearchBar
+import kotlinx.android.synthetic.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -20,14 +22,15 @@ import project.ramezreda.moviez.data.adapters.IMovieSelect
 import project.ramezreda.moviez.data.adapters.MoviesAdapter
 import project.ramezreda.moviez.data.room.entities.Movie
 
-class MainFragment : Fragment(), IMovieSelect {
+class MainFragment : Fragment(), IMovieSelect, MaterialSearchBar.OnSearchActionListener {
 
     companion object {
         fun newInstance() = MainFragment()
     }
 
-    private lateinit var progressBar : ProgressBar
+    private lateinit var progressBar: ProgressBar
     private lateinit var recyclerViewMovies: RecyclerView
+    private lateinit var searchBar: MaterialSearchBar
     private lateinit var viewModel: MainViewModel
     private lateinit var adapter: MoviesAdapter
 
@@ -39,6 +42,9 @@ class MainFragment : Fragment(), IMovieSelect {
 
         progressBar = view.findViewById(R.id.progressBar)
         recyclerViewMovies = view.findViewById(R.id.moviesRecyclerView)
+        searchBar = view.findViewById(R.id.searchBar)
+
+        searchBar.setOnSearchActionListener(this)
 
         return view
     }
@@ -80,5 +86,22 @@ class MainFragment : Fragment(), IMovieSelect {
 
     override fun onMovieSelected(movie: Movie) {
 //        photoSelect.let {  photoSelect.onPhotoSelected(photo) }
+//         TODO
+    }
+
+    override fun onButtonClicked(buttonCode: Int) {
+    }
+
+    override fun onSearchStateChanged(enabled: Boolean) {
+    }
+
+    override fun onSearchConfirmed(text: CharSequence?) {
+        val job = GlobalScope.async {
+            viewModel.searchMovies(text.toString())
+        }
+
+        GlobalScope.launch(Dispatchers.Main) {
+            viewModel.movies.value = job.await()
+        }
     }
 }

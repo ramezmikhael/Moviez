@@ -15,11 +15,11 @@ interface MovieDao {
     @Query(
         """
         SELECT * FROM 
-            (SELECT * FROM movies WHERE title LIKE :title ORDER BY rating LIMIT 5)
+            (SELECT * FROM movies WHERE title LIKE :title ORDER BY rating DESC )
         ORDER BY year 
         """
     )
-    fun findMovies(title: String): LiveData<List<Movie>>
+    fun searchMovies(title: String): MutableList<Movie>
 
     @Query("SELECT * FROM movies")
     fun getAllMovies(): List<Movie>

@@ -24,4 +24,8 @@ class DataRepository constructor(private val context: Context) {
         }
         return movies
     }
+
+    fun searchMovies(title: String): MutableList<Movie>? {
+        return db?.movieDao()?.searchMovies("%$title%")
+    }
 }
