@@ -7,8 +7,8 @@ class ListTypeConverters {
     @TypeConverter
     fun listToString(value: List<String>?): String? {
         var csv = ""
-        value?.map { csv += "$it," }
-        return csv.removeSuffix(",")
+        value?.map { csv += "$it, " }
+        return csv.removeSuffix(", ")
     }
 
     @TypeConverter
