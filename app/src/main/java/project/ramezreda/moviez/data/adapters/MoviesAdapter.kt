@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import project.ramezreda.moviez.R
+import project.ramezreda.moviez.callbacks.OnMovieSelect
 import project.ramezreda.moviez.data.converters.ListTypeConverters
 import project.ramezreda.moviez.data.room.entities.Movie
 
-class MoviesAdapter(var movies: List<Movie>?, val movieSelect: IMovieSelect) :
+class MoviesAdapter(var movies: List<Movie>?, val movieSelect: OnMovieSelect) :
     RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
     val converter = ListTypeConverters()

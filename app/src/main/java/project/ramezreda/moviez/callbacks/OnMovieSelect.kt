@@ -1,7 +1,7 @@
-package project.ramezreda.moviez.data.adapters
+package project.ramezreda.moviez.callbacks
 
 import project.ramezreda.moviez.data.room.entities.Movie
 
-interface IMovieSelect {
+interface OnMovieSelect {
     fun onMovieSelected(movie: Movie)
 }

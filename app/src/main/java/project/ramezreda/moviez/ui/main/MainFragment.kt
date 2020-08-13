@@ -1,30 +1,27 @@
 package project.ramezreda.moviez.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.mancj.materialsearchbar.MaterialSearchBar
-import kotlinx.android.synthetic.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import project.ramezreda.moviez.R
-import project.ramezreda.moviez.data.adapters.IMovieSelect
+import project.ramezreda.moviez.callbacks.OnMovieSelect
 import project.ramezreda.moviez.data.adapters.MoviesAdapter
 import project.ramezreda.moviez.data.room.entities.Movie
 import project.ramezreda.moviez.databinding.MainFragmentBinding
+import project.ramezreda.moviez.ui.MainActivity
 
-class MainFragment : Fragment(), IMovieSelect, MaterialSearchBar.OnSearchActionListener {
+class MainFragment : Fragment(), OnMovieSelect, MaterialSearchBar.OnSearchActionListener {
 
     companion object {
         fun newInstance() = MainFragment()
@@ -77,8 +74,7 @@ class MainFragment : Fragment(), IMovieSelect, MaterialSearchBar.OnSearchActionL
     }
 
     override fun onMovieSelected(movie: Movie) {
-//        photoSelect.let {  photoSelect.onPhotoSelected(photo) }
-//         TODO
+        (activity as MainActivity).movieSelected(movie)
     }
 
     override fun onButtonClicked(buttonCode: Int) {

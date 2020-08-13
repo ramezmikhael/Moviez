@@ -1,9 +1,12 @@
 package project.ramezreda.moviez.data.room.entities
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "movies")
 data class Movie(
     @PrimaryKey(autoGenerate = true)
@@ -17,4 +20,4 @@ data class Movie(
 
     var year: Int,
     var rating: Int
-)
+) : Parcelable
