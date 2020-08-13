@@ -29,15 +29,10 @@ class MainActivity : AppCompatActivity() {
 
     fun movieSelected(movie: Movie) {
         val fragment = DetailsFragment.newInstance()
-
         val bundle = Bundle()
+
         bundle.putParcelable(EXTRA_MOVIE, movie)
-
         fragment.arguments = bundle
-
-        // Make the fragment transition a little smoother and appealing
-        fragment.enterTransition = Slide(Gravity.RIGHT)
-        fragment.exitTransition = Slide(Gravity.LEFT)
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, fragment)
