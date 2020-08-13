@@ -19,7 +19,7 @@ interface MovieDao {
         ORDER BY year 
         """
     )
-    fun searchMovies(title: String): MutableList<Movie>
+    suspend fun searchMovies(title: String): MutableList<Movie>
 
     @Query("SELECT * FROM movies")
     fun getAllMovies(): List<Movie>

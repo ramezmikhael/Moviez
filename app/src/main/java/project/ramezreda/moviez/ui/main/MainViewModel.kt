@@ -12,7 +12,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val movies = MutableLiveData<List<Movie>>()
 
     suspend fun getAllMovies() : List<Movie>? {
-        // Do heavy process in a background thread
+        // Do the heavy process in a background thread
         return repository.getAllMovies()
     }
 
@@ -32,7 +32,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         while (iterator.hasNext()) {
             val movie = iterator.next()
 
-            if((i < 5 && movie.year > year) || year != movie.year) {
+            if(year != movie.year) {
                 i = 0
                 year = movie.year
             } else if(i > 4 && year == movie.year) {
