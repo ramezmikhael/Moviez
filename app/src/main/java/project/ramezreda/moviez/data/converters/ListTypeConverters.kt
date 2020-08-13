@@ -1,6 +1,5 @@
 package project.ramezreda.moviez.data.converters
 
-import android.util.Log
 import androidx.room.TypeConverter
 
 class ListTypeConverters {

@@ -95,4 +95,5 @@
     <string name="year">Year:</string>
     <string name="genres">Genres:</string>
     <string name="cast">Cast:</string>
+    <string name="no_photos_message">Oops! No photos available! :(</string>
 </resources>

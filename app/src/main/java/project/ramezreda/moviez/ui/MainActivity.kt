@@ -1,10 +1,7 @@
 package project.ramezreda.moviez.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
-import android.widget.Toolbar
-import androidx.transition.Slide
+import androidx.appcompat.app.AppCompatActivity
 import project.ramezreda.moviez.R
 import project.ramezreda.moviez.data.room.entities.Movie
 import project.ramezreda.moviez.ui.details.DetailsFragment
