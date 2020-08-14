@@ -12,6 +12,6 @@ class ListTypeConverters {
 
     @TypeConverter
     fun stringToList(value: String?): List<String>? {
-        return value?.split(",")
+        return value?.split(", ")
     }
 }

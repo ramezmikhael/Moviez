@@ -36,28 +36,34 @@ class MainFragment : BaseFragment(), OnMovieSelect, MaterialSearchBar.OnSearchAc
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false)
-        binding.searchBar.setOnSearchActionListener(this)
 
-        viewModel.movies.observe(viewLifecycleOwner, Observer {
-            adapter.movies = it
-            adapter.notifyDataSetChanged()
-        })
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.searchBar.setOnSearchActionListener(this)
 
         adapter = MoviesAdapter(viewModel.movies.value, this)
         binding.moviesRecyclerView.adapter = adapter
         binding.moviesRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        searchMovies(binding.searchBar.text)
+        viewModel.movies.observe(viewLifecycleOwner, Observer {
+            adapter.movies = it
+            adapter.notifyDataSetChanged()
+        })
+        binding.searchBar.text = viewModel.searchText.value
 
-        return binding.root
+        searchMovies(binding.searchBar.text)
     }
 
     private fun searchMovies(text: String?) {
         binding.progressBar.visibility = View.VISIBLE
 
         val job = GlobalScope.async { viewModel.searchMovies(text.toString()) }
-        GlobalScope.launch(Dispatchers.Main) { viewModel.movies.value = job.await()
+        GlobalScope.launch(Dispatchers.Main) {
+            val jobFinished = job.await()
             binding.progressBar.visibility = View.GONE
         }
     }
@@ -73,6 +79,7 @@ class MainFragment : BaseFragment(), OnMovieSelect, MaterialSearchBar.OnSearchAc
     }
 
     override fun onSearchConfirmed(text: CharSequence?) {
+        viewModel.searchText.value = text.toString()
         searchMovies(text.toString())
     }
 }

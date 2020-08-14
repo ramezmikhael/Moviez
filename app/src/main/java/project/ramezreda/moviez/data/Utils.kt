@@ -11,7 +11,7 @@ object Utils {
         return context.assets.open("movies.json").bufferedReader().use { it.readText() }
     }
 
-    fun buildPhotoUrl(photo: PhotoModel) : String {
+    fun buildPhotoUrl(photo: PhotoModel): String {
         return "https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg"
     }
 }
