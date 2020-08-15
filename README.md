@@ -11,7 +11,7 @@
 
 # Screens
 Main Screen
-<img src="https://github.com/ramezmikhael/Moviez/blob/master/screenshots/Screenshot_1597505434.png?raw=true" alt="drawing" style="width:100px;"/>
+<img src="https://github.com/ramezmikhael/Moviez/blob/master/screenshots/Screenshot_1597505434.png?raw=true" alt="drawing" width="50%"/>
 
 Search
 ![Screen 02](https://github.com/ramezmikhael/Moviez/blob/master/screenshots/Screenshot_1597505461.png?raw=true =300x)
