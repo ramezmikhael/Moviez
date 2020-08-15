@@ -8,6 +8,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 object FlickrClient {
+
+    private const val BASE_URL = "https://www.flickr.com"
+
     fun getClient(): Retrofit {
 
         val interceptor = HttpLoggingInterceptor()
@@ -17,7 +20,7 @@ object FlickrClient {
             OkHttpClient.Builder().addInterceptor(interceptor).build()
 
         return Retrofit.Builder()
-            .baseUrl("https://www.flickr.com")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(client)

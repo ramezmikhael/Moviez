@@ -6,11 +6,10 @@ import project.ramezreda.moviez.data.room.entities.Movie
 
 object JsonConverter {
 
-    fun ConvertFromJson(json: String) : List<Movie> {
-        val gson = Gson()
+    fun convertFromJson(json: String) : List<Movie> {
 
         val moviesListType = object : TypeToken<List<Movie>>() {}.type
 
-        return gson.fromJson(json, moviesListType)
+        return Gson().fromJson(json, moviesListType)
     }
 }

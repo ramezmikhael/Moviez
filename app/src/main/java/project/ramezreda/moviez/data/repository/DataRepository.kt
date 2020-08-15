@@ -15,7 +15,7 @@ class DataRepository constructor(private val context: Context) {
         // If there is no cached data in room db, parse the JSON file from the app assits
         // then cache the movies in the database
         if (movies == null || movies.isEmpty()) {
-            movies = JsonConverter.ConvertFromJson(Utils.readAssets(context))
+            movies = JsonConverter.convertFromJson(Utils.readAssets(context))
 
             // Cache movies in the DB
             for(movie in movies) {

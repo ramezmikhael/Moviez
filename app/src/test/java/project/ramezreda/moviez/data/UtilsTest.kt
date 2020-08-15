@@ -1,14 +1,14 @@
-package project.ramezreda.moviez
+package project.ramezreda.moviez.data
 
-import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Test
-import project.ramezreda.moviez.data.Utils
+
+import org.junit.Assert.*
+import org.junit.Before
 import project.ramezreda.moviez.data.api.model.PhotoModel
 
-class UtilsUnitTest {
+class UtilsTest {
 
-    lateinit var photo: PhotoModel
+    private lateinit var photo: PhotoModel
 
     @Before
     fun setup() {
@@ -25,7 +25,7 @@ class UtilsUnitTest {
     }
 
     @Test
-    fun buildUrl_isCorrect() {
+    fun buildPhotoUrl_isCorrect() {
         assertEquals(Utils.buildPhotoUrl(photo),
             "https://farm66.staticflickr.com/65535/50222408746_65535.jpg")
     }
