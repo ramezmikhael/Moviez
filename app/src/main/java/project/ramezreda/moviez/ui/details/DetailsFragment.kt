@@ -25,8 +25,11 @@ class DetailsFragment : BaseFragment() {
         fun newInstance() = DetailsFragment()
     }
 
-    private lateinit var viewModel: DetailsViewModel
     private lateinit var binding: DetailsFragmentBinding
+
+    private val viewModel: DetailsViewModel by lazy {
+        ViewModelProvider(this).get(DetailsViewModel::class.java)
+    }
 
     private val adapter: FlickrAdapter by lazy {
         FlickrAdapter(viewModel.response.value?.photos)
@@ -36,19 +39,27 @@ class DetailsFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.details_fragment, container, false)
-        viewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
+        return binding.root
+    }
 
-        binding.photosRecyclerView.layoutManager = GridLayoutManager(context, 2)
-        binding.photosRecyclerView.adapter = adapter
-        fillMovieInfo()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        setupRecyclerView()
+        setupUIValues()
+        setupObservers()
+    }
+
+    private fun setupObservers() {
         viewModel.response.observe(viewLifecycleOwner, Observer {
             refreshRecyclerView()
         })
+    }
 
-        return binding.root
+    private fun setupRecyclerView() {
+        binding.photosRecyclerView.layoutManager = GridLayoutManager(context, 2)
+        binding.photosRecyclerView.adapter = adapter
     }
 
     private fun refreshRecyclerView() {
@@ -64,7 +75,7 @@ class DetailsFragment : BaseFragment() {
         binding.progressBar.visibility = View.GONE
     }
 
-    private fun fillMovieInfo() {
+    private fun setupUIValues() {
         val converter = ListTypeConverters()
 
         val movie = arguments?.getParcelable<Movie>(MainActivity.EXTRA_MOVIE)

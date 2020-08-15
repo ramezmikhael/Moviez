@@ -18,7 +18,7 @@ class DetailsViewModel : ViewModel() {
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe({
-                response.value = it
+                response.postValue(it)
             }, {
                 Log.d("Error", it?.message!!)
             })
