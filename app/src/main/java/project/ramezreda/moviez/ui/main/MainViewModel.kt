@@ -20,8 +20,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         val list: List<Movie>?
 
         if(title.isEmpty()) {
+            // If the search text is empty I return all the movies available. Getting all the movies is
+            // straight forward with a logic explained in the DataRepository class
             list = repository.getAllMovies()
         } else {
+            // When there is a search term, I get the result from RoomDB and filter the results here
+            // We are only interested in the first 5 movies from each category (i.e. year) so I remove
+            // everything else
             list = repository.searchMovies(title)
             if (list != null) {
                 val iterator: MutableIterator<Movie> = list.iterator()
@@ -42,7 +47,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
 
-        GlobalScope.launch(Dispatchers.Main) { movies.value = list }
+        GlobalScope.launch(Dispatchers.Main) { movies.postValue(list) }
 
         return true
     }

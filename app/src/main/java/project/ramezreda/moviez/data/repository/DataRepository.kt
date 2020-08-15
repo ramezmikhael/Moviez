@@ -12,7 +12,7 @@ class DataRepository constructor(private val context: Context) {
     suspend fun getAllMovies(): List<Movie>? {
         var movies = db?.movieDao()?.getAllMovies()
 
-        // If there is no cached data in room db, parse the JSON file from the app assits
+        // If there is no cached data in room db, parse the JSON file from the app assets
         // then cache the movies in the database
         if (movies == null || movies.isEmpty()) {
             movies = JsonConverter.convertFromJson(Utils.readAssets(context))
