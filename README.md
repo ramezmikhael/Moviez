@@ -9,4 +9,16 @@
     FLICKR_APIKEY="YOUR-FLICKR-API-KEY".
 ```
 
+# Screens
+Main Screen
+![Screen 01](https://github.com/ramezmikhael/Moviez/blob/master/screenshots/Screenshot_1597505434.png?raw=true)
+
+Search
+![Screen 01](https://github.com/ramezmikhael/Moviez/blob/master/screenshots/Screenshot_1597505461.png?raw=true)
+
+Categorized search
+![Screen 01](https://github.com/ramezmikhael/Moviez/blob/master/screenshots/Screenshot_1597505506.png?raw=true)
+
+Movie details & Flickr pictures
+![Screen 01](https://github.com/ramezmikhael/Moviez/blob/master/screenshots/Screenshot_1597505516.png?raw=true)
  
