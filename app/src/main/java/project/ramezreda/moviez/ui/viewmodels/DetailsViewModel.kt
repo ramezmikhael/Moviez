@@ -1,4 +1,4 @@
-package project.ramezreda.moviez.ui.details
+package project.ramezreda.moviez.ui.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

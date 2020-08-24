@@ -1,9 +1,8 @@
 package project.ramezreda.moviez.data
 
-import org.junit.Test
-
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
+import org.junit.Test
 import project.ramezreda.moviez.data.api.model.PhotoModel
 
 class UtilsTest {

@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="project.ramezreda.moviez.ui.details.DetailsViewModel" />
+            type="project.ramezreda.moviez.ui.viewmodels.DetailsViewModel" />
     </data>
 
     <LinearLayout

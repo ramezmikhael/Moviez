@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="project.ramezreda.moviez.ui.main.MainViewModel" />
+            type="project.ramezreda.moviez.ui.viewmodels.MainViewModel" />
 
     </data>
 

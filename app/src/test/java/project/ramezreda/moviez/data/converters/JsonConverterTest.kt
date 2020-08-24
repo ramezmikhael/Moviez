@@ -1,10 +1,9 @@
 package project.ramezreda.moviez.data.converters
 
 import org.hamcrest.CoreMatchers.`is`
-import org.junit.Test
-
-import org.junit.Assert.*
+import org.junit.Assert.assertThat
 import org.junit.Before
+import org.junit.Test
 import project.ramezreda.moviez.data.room.entities.Movie
 
 class JsonConverterTest {

@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import project.ramezreda.moviez.R
 import project.ramezreda.moviez.data.room.entities.Movie
-import project.ramezreda.moviez.ui.details.DetailsFragment
-import project.ramezreda.moviez.ui.main.MainFragment
+import project.ramezreda.moviez.ui.fragments.DetailsFragment
+import project.ramezreda.moviez.ui.fragments.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

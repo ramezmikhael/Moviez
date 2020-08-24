@@ -1,16 +1,14 @@
-package project.ramezreda.moviez.ui.main
+package project.ramezreda.moviez.ui.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import project.ramezreda.moviez.data.repository.DataRepository
 import project.ramezreda.moviez.data.room.entities.Movie
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
-    private var repository: DataRepository = DataRepository(application)
+class MainViewModel(private val repository: DataRepository) : ViewModel() {
 
     val movies = MutableLiveData<List<Movie>>()
     var searchText = MutableLiveData<String>("")

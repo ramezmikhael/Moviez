@@ -1,4 +1,4 @@
-package project.ramezreda.moviez.ui.details
+package project.ramezreda.moviez.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,11 +18,13 @@ import project.ramezreda.moviez.data.room.entities.Movie
 import project.ramezreda.moviez.databinding.DetailsFragmentBinding
 import project.ramezreda.moviez.ui.MainActivity
 import project.ramezreda.moviez.ui.base.BaseFragment
+import project.ramezreda.moviez.ui.viewmodels.DetailsViewModel
 
 class DetailsFragment : BaseFragment() {
 
     companion object {
-        fun newInstance() = DetailsFragment()
+        fun newInstance() =
+            DetailsFragment()
     }
 
     private lateinit var binding: DetailsFragmentBinding

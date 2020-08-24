@@ -1,4 +1,4 @@
-package project.ramezreda.moviez.ui.main
+package project.ramezreda.moviez.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,10 +16,13 @@ import kotlinx.coroutines.launch
 import project.ramezreda.moviez.R
 import project.ramezreda.moviez.callbacks.OnMovieSelect
 import project.ramezreda.moviez.data.adapters.MoviesAdapter
+import project.ramezreda.moviez.data.repository.DataRepository
 import project.ramezreda.moviez.data.room.entities.Movie
 import project.ramezreda.moviez.databinding.MainFragmentBinding
 import project.ramezreda.moviez.ui.MainActivity
 import project.ramezreda.moviez.ui.base.BaseFragment
+import project.ramezreda.moviez.ui.viewmodels.MainViewModel
+import project.ramezreda.moviez.ui.viewmodels.factories.MainViewModelFactory
 
 class MainFragment : BaseFragment(), OnMovieSelect, MaterialSearchBar.OnSearchActionListener {
 
@@ -27,7 +30,15 @@ class MainFragment : BaseFragment(), OnMovieSelect, MaterialSearchBar.OnSearchAc
         fun newInstance() = MainFragment()
     }
 
-    private val viewModel: MainViewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProvider(
+            this, MainViewModelFactory(
+                DataRepository(context!!)
+            )
+        ).get(
+            MainViewModel::class.java
+        )
+    }
     private lateinit var binding: MainFragmentBinding
     private lateinit var adapter: MoviesAdapter
 
