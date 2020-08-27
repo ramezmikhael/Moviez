@@ -6,10 +6,10 @@ import project.ramezreda.moviez.data.converters.JsonConverter
 import project.ramezreda.moviez.data.room.MoviesDatabase
 import project.ramezreda.moviez.data.room.entities.Movie
 
-class DataRepository constructor(private val context: Context) {
+class DataRepositoryImpl constructor(private val context: Context) : Repository {
     private val db: MoviesDatabase? = MoviesDatabase.getDatabase(context)
 
-    suspend fun getAllMovies(): List<Movie>? {
+    override suspend fun getAllMovies(): List<Movie>? {
         var movies = db?.movieDao()?.getAllMovies()
 
         // If there is no cached data in room db, parse the JSON file from the app assets
@@ -25,7 +25,7 @@ class DataRepository constructor(private val context: Context) {
         return movies
     }
 
-    suspend fun searchMovies(title: String): MutableList<Movie>? {
+    override suspend fun searchMovies(title: String): MutableList<Movie>? {
         return db?.movieDao()?.searchMovies("%$title%")
     }
 }

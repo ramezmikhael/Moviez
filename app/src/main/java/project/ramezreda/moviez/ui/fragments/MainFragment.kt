@@ -9,14 +9,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mancj.materialsearchbar.MaterialSearchBar
-import kotlinx.coroutines.Dispatchers
+import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import project.ramezreda.moviez.R
 import project.ramezreda.moviez.callbacks.OnMovieSelect
 import project.ramezreda.moviez.data.adapters.MoviesAdapter
-import project.ramezreda.moviez.data.repository.DataRepository
+import project.ramezreda.moviez.data.repository.DataRepositoryImpl
 import project.ramezreda.moviez.data.room.entities.Movie
 import project.ramezreda.moviez.databinding.MainFragmentBinding
 import project.ramezreda.moviez.ui.MainActivity
@@ -33,7 +32,7 @@ class MainFragment : BaseFragment(), OnMovieSelect, MaterialSearchBar.OnSearchAc
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider(
             this, MainViewModelFactory(
-                DataRepository(context!!)
+                DataRepositoryImpl(context!!)
             )
         ).get(
             MainViewModel::class.java
@@ -70,6 +69,13 @@ class MainFragment : BaseFragment(), OnMovieSelect, MaterialSearchBar.OnSearchAc
             adapter.movies = it
             adapter.notifyDataSetChanged()
         })
+
+        viewModel.isLoading.observe(viewLifecycleOwner, Observer {
+            if(it)
+                progressBar.visibility = View.VISIBLE
+            else
+                progressBar.visibility = View.GONE
+        })
     }
 
     private fun setupRecyclerView() {
@@ -80,18 +86,8 @@ class MainFragment : BaseFragment(), OnMovieSelect, MaterialSearchBar.OnSearchAc
     }
 
     private fun searchMovies(text: String?) {
-        // Since the search (especially for the first time of the app) might take long time
-        // I show a progressbar and hide it once the long running operation is done
-        binding.progressBar.visibility = View.VISIBLE
-
         // Coroutine job will be running asynchronously in a background thread
-        val job = GlobalScope.async { viewModel.searchMovies(text.toString()) }
-
-        // Accessing a UI view which was created on the Main Thread must be done on the main thread as well
-        GlobalScope.launch(Dispatchers.Main) {
-            val jobFinished = job.await()
-            binding.progressBar.visibility = View.GONE
-        }
+        GlobalScope.launch { viewModel.searchMovies(text.toString()) }
     }
 
     // A callback to the parent activity informing it that a movie was selected from the list

@@ -3,18 +3,21 @@ package project.ramezreda.moviez.ui.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import project.ramezreda.moviez.data.repository.DataRepository
+import kotlinx.coroutines.withContext
+import project.ramezreda.moviez.data.repository.Repository
 import project.ramezreda.moviez.data.room.entities.Movie
 
-class MainViewModel(private val repository: DataRepository) : ViewModel() {
+class MainViewModel(private val repository: Repository) : ViewModel() {
 
     val movies = MutableLiveData<List<Movie>>()
     var searchText = MutableLiveData<String>("")
+    var isLoading = MutableLiveData<Boolean>(false)
 
     suspend fun searchMovies(title: String) : Boolean {
 
+        withContext(Dispatchers.Main) {
+            isLoading.postValue(true)
+        }
         val list: List<Movie>?
 
         if(title.isEmpty()) {
@@ -45,8 +48,10 @@ class MainViewModel(private val repository: DataRepository) : ViewModel() {
             }
         }
 
-        GlobalScope.launch(Dispatchers.Main) { movies.postValue(list) }
-
+        withContext(Dispatchers.Main) {
+            isLoading.postValue(false)
+            movies.postValue(list)
+        }
         return true
     }
 }

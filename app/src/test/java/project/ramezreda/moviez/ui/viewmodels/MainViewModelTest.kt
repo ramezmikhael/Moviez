@@ -1,7 +1,6 @@
 package project.ramezreda.moviez.ui.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.*
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +12,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import project.ramezreda.moviez.data.repository.DataRepository
+import project.ramezreda.moviez.data.repository.DataRepositoryImpl
 import project.ramezreda.moviez.data.room.entities.Movie
 import project.ramezreda.moviez.ui.viewmodels.factories.MainViewModelFactory
 
@@ -22,11 +21,11 @@ class MainViewModelTest {
     @get:Rule
     val taskExecutorRule = InstantTaskExecutorRule()
 
-    lateinit var mainViewModel: MainViewModel
-    lateinit var repository: DataRepository
+    private lateinit var mainViewModel: MainViewModel
+    private lateinit var repository: DataRepositoryImpl
 
     // observers
-    lateinit var moviesObserver: Observer<List<Movie>>
+    private lateinit var moviesObserver: Observer<List<Movie>>
 
     private val mainThreadSurrogate = newSingleThreadContext("UI thread")
 
